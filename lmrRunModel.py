@@ -234,6 +234,9 @@ def process_xml(raw_dict):
         model_dict["cpus"] = uw_exec["CPUs"]
         command_dict["parallel_runner"] = "{parallel_command} {parallel_command_cpu_flag} {cpus}"
 
+    if xmlbool(uw_exec["magnus_shifter"]):
+        command_dict["parallel_runner"] = ""
+
     try:
         model_dict["extra_command_line_flags"] = uw_exec["extra_command_line_flags"]
     except KeyError:
